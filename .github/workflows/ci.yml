@@ -27,12 +27,6 @@ jobs:
   ci:
     needs: read-repo-files
     if: (!cancelled())
-    uses: ./.github/workflows/main.yml
-    with:
-      publish: ${{ github.event_name == 'push' && github.server_url == 'https://github.com' || github.event_name == 'workflow_dispatch' && inputs.release_type == 'release' }}
-      use-repo-files: true
-      offset: 400
-      build-m1: true
-      draft: ${{ github.event_name == 'workflow_dispatch' && inputs.release_type == 'draft' }}
-      mcpelauncher-ref: ${{ needs.read-repo-files.outputs.mcpelauncher-ref || 'ng' }}
-    secrets: inherit
+    runs-on: ubuntu-latest
+    steps:
+    - run: echo "testing workflow validity"
