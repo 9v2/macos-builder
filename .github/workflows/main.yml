@@ -69,7 +69,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache libcxx32
       if: steps.libcxx32-llvm.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx32--macos-10-10-4
       with:
@@ -108,7 +108,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache libcxx64
       if: steps.libcxx64-llvm.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx64--macos-10-10-4
       with:
@@ -149,7 +149,7 @@ jobs:
     - name: Cache libcxx32
       if: steps.libcxx-llvm.outputs.cache-hit != 'true'
       id: libcxx32-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx32--macos-10-10-4
       with:
@@ -158,7 +158,7 @@ jobs:
     - name: Cache libcxx64
       if: steps.libcxx-llvm.outputs.cache-hit != 'true'
       id: libcxx64-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx64--macos-10-10-4
       with:
@@ -166,7 +166,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache libcxx
       if: steps.libcxx-llvm.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx--macos-10-10-4
       with:
@@ -196,7 +196,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl
       if: steps.cache-openssl32.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl32-macos-10-10
       with:
@@ -250,7 +250,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl
       if: steps.cache-openssl64.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl64-macos-10-10
       with:
@@ -304,7 +304,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl
       if: steps.openssl.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl-2
       with:
@@ -312,7 +312,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl32
       if: steps.openssl.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl32-macos-10-10
       with:
@@ -320,7 +320,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl64
       if: steps.openssl.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl64-macos-10-10
       with:
@@ -349,7 +349,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache angle
       if: steps.angle.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-angle-3
       with:
@@ -386,7 +386,7 @@ jobs:
     steps:
     #- name: Select Xcode
     #  run: sudo xcode-select -switch /Applications/Xcode_14.2.app
-    - uses: actions/cache/restore@v4
+    - uses: actions/cache/restore@v6
       id: cache
       with:
         path: protobuf-build
@@ -438,7 +438,7 @@ jobs:
         make -j8
         make install -j8
       working-directory: protobuf
-    - uses: actions/cache/save@v4
+    - uses: actions/cache/save@v6
       if: steps.cache.outputs.cache-hit != 'true'
       with:
         path: protobuf-build
@@ -558,7 +558,7 @@ jobs:
         path: "m1-artifacts"
     - name: Cache libcxx32
       id: libcxx32-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx32--macos-10-10-4
       with:
@@ -566,7 +566,7 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache libcxx64
       id: libcxx64-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx64--macos-10-10-4
       with:
@@ -574,28 +574,28 @@ jobs:
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache libcxx
       id: libcxx-llvm
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-libcxx--macos-10-10-4
       with:
         path: libcxx-build
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl-2
       with:
         path: ssl
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl32
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl32-macos-10-10
       with:
         path: ssl32
         key: ${{ runner.os }}-build-${{ env.cache-name }}
     - name: Cache openssl64
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-openssl64-macos-10-10
       with:
@@ -611,13 +611,13 @@ jobs:
         ln -s ../ssl/lib
     - name: Cache angle
       if: steps.angle.outputs.cache-hit != 'true'
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-angle-3
       with:
         path: source/osx-angle-ci/artifacts
         key: ${{ runner.os }}-build-${{ env.cache-name }}
-    - uses: actions/cache/restore@v4
+    - uses: actions/cache/restore@v6
       with:
         fail-on-cache-miss: true
         path: protobuf-build
@@ -631,7 +631,7 @@ jobs:
     - name: Cache qt
       if: 'false'
       id: cache-qt
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       env:
         cache-name: cache-qt-macos-${{ matrix.target }}
       with:
